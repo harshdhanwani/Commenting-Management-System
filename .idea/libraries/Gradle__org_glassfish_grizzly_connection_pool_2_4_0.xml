@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.glassfish.grizzly:connection-pool:2.4.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.grizzly/connection-pool/2.4.0/95dfc6d22695ccdf0ece9a4f438874737b6aeb2c/connection-pool-2.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.glassfish.grizzly/connection-pool/2.4.0/3f745c35ee50786b1f15e62217ed37fcfe45f166/connection-pool-2.4.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
