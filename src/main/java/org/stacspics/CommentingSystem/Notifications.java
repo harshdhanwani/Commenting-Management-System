@@ -1,5 +1,7 @@
 package org.stacspics.CommentingSystem;
 
+import com.google.gson.Gson;
+
 public class Notifications {
 
     private String notifBody;
@@ -24,6 +26,10 @@ public class Notifications {
         return notifRead;
     }
 
+    public void markNotifRead(){
+        notifRead = true;
+    }
+
     public void setNotifRead(boolean notifRead) {
         this.notifRead = notifRead;
     }
@@ -36,6 +42,8 @@ public class Notifications {
         this.notifComments = notifComments;
     }
 
-
-
+    public String convertToJSON(){
+        Gson g = new Gson();
+        return g.toJson(this);
+    }
 }

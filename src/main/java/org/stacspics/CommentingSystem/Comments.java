@@ -1,6 +1,9 @@
 package org.stacspics.CommentingSystem;
 
 import com.google.gson.Gson;
+import org.stacspics.CommentingSystem.resources.StorageResource;
+
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -44,6 +47,27 @@ try {
 }
 to downvote a comment
 */
+    public boolean upVoteComment(StorageResource storageResource){
+        upVotesCount++;
+        try {
+            storageResource.addComment(this);
+            return true;
+        }catch (IOException ioe){
+            ioe.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean downVoteComment(StorageResource storageRes){
+        upVotesCount--;
+
+        try{
+            storageRes.addComment(this);
+            return true;
+        } catch (IOException io){
+            return false;
+        }
+    }
 
 
     public String convertToJSON(){

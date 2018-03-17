@@ -22,6 +22,10 @@ public class Photos {
         return photoUser_name;
     }
 
+    public void addComment(Comments comment){
+        comments.add(comment);
+    }
+
     public void setPhotoUser_name(String photoUser_name) {
         this.photoUser_name = photoUser_name;
     }
