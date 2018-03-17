@@ -9,13 +9,13 @@ import java.net.URI;
 public class Server {
 
     // Base URI the Grizzly HTTP server will listen on
-    public  final String BASE_URI = "http://localhost:1234/myapp/";
+    public  final String BASE_URI = "http://localhost:8080/myapp/";
     private HttpServer server;
 
     public void startServer() {
 
         // create a resource config that scans for JAX-RS resources and providers
-        // in org.stacscal.rest package
+        // in org.stacspics.CommentingSystem package
         final ResourceConfig rc = new ResourceConfig().packages("org.stacspics.CommentingSystem");
 
         // create and start a new instance of grizzly http server
@@ -31,9 +31,8 @@ public class Server {
     }
 
     public static void main(String[] args) {
-        Server server = new Server();
-        server.startServer();
+        Server s = new Server();
+        s.startServer();
     }
-
 
 }
