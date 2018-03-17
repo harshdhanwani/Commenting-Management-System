@@ -30,10 +30,6 @@ public class Notifications {
         notifRead = true;
     }
 
-    public void setNotifRead(boolean notifRead) {
-        this.notifRead = notifRead;
-    }
-
     public Comments getNotifComments() {
         return notifComments;
     }

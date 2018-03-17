@@ -94,8 +94,24 @@ public class User {
         this.comments = comments;
     }
 
-    public ArrayList<Notifications> getNotifications() {
-        return notifications;
+    public ArrayList<Notifications> getNotifications(StorageResource storageResource) {
+
+        ArrayList<Notifications> notifsUnread = new ArrayList<>();
+        for (Notifications notifs : notifications){
+            if (!notifs.isNotifRead()){
+                notifsUnread.add(notifs);
+                notifs.markNotifRead();
+            }
+        }
+
+        try {
+            storageResource.addUsers(this);
+            return notifsUnread;
+
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+            return null;
+        }
     }
 
     public void setNotifications(ArrayList<Notifications> notifications) {

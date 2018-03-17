@@ -69,6 +69,18 @@ to downvote a comment
         }
     }
 
+    public boolean deleteComment(User user, StorageResource sr){
+        if (user.isAdministrator()){
+            commentBody = " Comment no longer available. Deleted by Admin.";
+            try {
+                sr.addComment(this);
+                return true;
+            } catch (IOException ioe){
+                return false;
+            }
+        }
+        return false;
+    }
 
     public String convertToJSON(){
         Gson g = new Gson();
