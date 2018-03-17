@@ -1,6 +1,7 @@
-package org.stacspics.CommentingSystem;
+package org.stacspics.CommentingSystem.entities;
 
 import com.google.gson.Gson;
+import org.stacspics.CommentingSystem.entities.Comments;
 
 public class Notifications {
 

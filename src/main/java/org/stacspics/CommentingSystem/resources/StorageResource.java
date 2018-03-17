@@ -1,10 +1,10 @@
 package org.stacspics.CommentingSystem.resources;
 
 import com.google.gson.Gson;
-import org.stacspics.CommentingSystem.Comments;
-import org.stacspics.CommentingSystem.ObjectIDs;
-import org.stacspics.CommentingSystem.Photos;
-import org.stacspics.CommentingSystem.User;
+import org.stacspics.CommentingSystem.entities.Comments;
+import org.stacspics.CommentingSystem.entities.ObjectIDs;
+import org.stacspics.CommentingSystem.entities.Photos;
+import org.stacspics.CommentingSystem.entities.User;
 
 import java.io.File;
 import java.io.FileWriter;

@@ -1,6 +1,8 @@
-package org.stacspics.CommentingSystem;
+package org.stacspics.CommentingSystem.entities;
 
 import com.google.gson.Gson;
+import org.stacspics.CommentingSystem.entities.Comments;
+import org.stacspics.CommentingSystem.entities.ObjectIDs;
 
 import java.util.ArrayList;
 

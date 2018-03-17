@@ -1,4 +1,4 @@
-package org.stacspics.CommentingSystem;
+package org.stacspics.CommentingSystem.entities;
 
 import org.stacspics.CommentingSystem.resources.StorageResource;
 

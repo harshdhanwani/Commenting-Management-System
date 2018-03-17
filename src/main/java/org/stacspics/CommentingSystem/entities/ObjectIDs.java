@@ -1,4 +1,4 @@
-package org.stacspics.CommentingSystem;
+package org.stacspics.CommentingSystem.entities;
 
 public class ObjectIDs {
 
