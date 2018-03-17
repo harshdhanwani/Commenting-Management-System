@@ -14,20 +14,13 @@ public class Comments {
     private boolean topLevelComment;
     private int commentId;
 
-    private int commentID = 0;
 
-    private int createCommentId(){
-        if (commentID == Integer.MAX_VALUE){
-             return -1;
-        }
-        return commentID++;
-    }
 
-    public Comments(String commentMessage, String userName, boolean topComment, int commentId){
+    public Comments(String commentMessage, String userName, boolean topComment, ObjectIDs objectIDs){
         commentBody = commentMessage;
         user_name = userName;
         upVotesCount = 0;
-        commentId = createCommentId();
+        commentId = objectIDs.createCommentId();
         commentTimeStamp = new Timestamp(System.currentTimeMillis());
         replies = new ArrayList<>();
         topLevelComment = topComment;
