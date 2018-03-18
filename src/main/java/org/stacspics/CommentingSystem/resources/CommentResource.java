@@ -75,5 +75,4 @@ public class CommentResource {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
     }
-
 }
