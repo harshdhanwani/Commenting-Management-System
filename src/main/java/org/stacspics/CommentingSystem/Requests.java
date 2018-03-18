@@ -47,14 +47,14 @@ public class Requests {
     }
 
 
-    public Response requestPOST(String systemPath, String data){
+    public Response requestPOST(String systemPath, String message){
 
         try{
             Client c = ClientBuilder.newClient();
             WebTarget wt = c.target("http://localhost:8080/myapp" + systemPath);
 
            Response requestResponse = wt.request("text/plain")
-                   .post(Entity.entity(data, "text/plain"));
+                   .post(Entity.entity(message, "text/plain"));
 
            return requestResponse;
         } catch (Exception e){
