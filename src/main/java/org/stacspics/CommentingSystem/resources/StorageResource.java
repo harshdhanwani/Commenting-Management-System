@@ -9,6 +9,8 @@ import org.stacspics.CommentingSystem.entities.User;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -164,6 +166,20 @@ public class StorageResource {
         FileWriter fileWriter = new FileWriter(f);
         fileWriter.write(this.convertToJSON());
         fileWriter.close();
+    }
+
+    public StorageResource readFromJson(String file){
+        try{
+            File f = new File(file);
+            FileWriter fileWriter = new FileWriter(f);
+            Gson gson = new Gson();
+            String jsonData = new String(Files.readAllBytes(Paths.get(file)));
+            StorageResource storageResource = gson.fromJson(jsonData, StorageResource.class);
+            return storageResource;
+        } catch (IOException ioe){
+            ioe.printStackTrace();
+            return null;
+        }
     }
 
     public String convertToJSON(){

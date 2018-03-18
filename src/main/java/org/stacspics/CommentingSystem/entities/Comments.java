@@ -37,16 +37,6 @@ public class Comments {
         return replies;
     }
 
-    /*
-to upvote a comment
-public boolean upVoteComment(){
-upVotesCount++;
-try {
-
-}
-}
-to downvote a comment
-*/
     public boolean upVoteComment(StorageResource storageResource){
         upVotesCount++;
         try {
