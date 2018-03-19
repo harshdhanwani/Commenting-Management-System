@@ -6,6 +6,10 @@ import org.stacspics.CommentingSystem.resources.StorageResource;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Class containing getters and setters for User specified components.
+ */
+
 public class User {
 
     String user_name;
@@ -20,7 +24,15 @@ public class User {
         notifications = new ArrayList<>();
     }
 
-    public boolean addComment(String commentBody, Photos photo, StorageResource storageResource){
+    /**
+     * Code to add a comment.
+     *
+     * @param commentBody     comment test
+     * @param photo           the photo on which the comment will be posted
+     * @param storageResource object to handle the back end of storing data to json file.
+     * @return true/false
+     */
+    public boolean addComment(String commentBody, Photos photo, StorageResource storageResource) {
         Comments comment = new Comments(commentBody, user_name, true, storageResource.getObjectIDs());
         comments.add(comment);
         photo.addComment(comment);
@@ -36,14 +48,21 @@ public class User {
             storageResource.addUsers(endUser);
             return true;
 
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             return false;
         }
     }
 
-
-    public boolean replyToComment(String replyBody, Comments comment, StorageResource storageResource){
+    /**
+     * Code to reply to a comment
+     *
+     * @param replyBody       the replied body
+     * @param comment         the comment to be replied to
+     * @param storageResource object to handle the back end of storing data to json file.
+     * @return
+     */
+    public boolean replyToComment(String replyBody, Comments comment, StorageResource storageResource) {
         Comments repliedComment = new Comments(replyBody, user_name, false, storageResource.getObjectIDs());
         comments.add(repliedComment);
         comment.replyToComment(repliedComment);
@@ -60,14 +79,21 @@ public class User {
 
             return true;
 
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             return false;
         }
     }
 
-
-    public void notificationHandler(User endUser, String username, String commentBody, Comments comment){
+    /**
+     * A notification handler to handle the Notifications and its semantics.
+     *
+     * @param endUser     the person who sent a notification
+     * @param username    the current user
+     * @param commentBody the comment posted
+     * @param comment     the comment on which the reply was made.
+     */
+    public void notificationHandler(User endUser, String username, String commentBody, Comments comment) {
 
         String notificationBody = "User " + endUser + " made a comment on your post: " + commentBody;
         Notifications notifications = new Notifications(notificationBody, comment);
@@ -75,7 +101,7 @@ public class User {
 
     }
 
-    public void addNotification(Notifications notif){
+    public void addNotification(Notifications notif) {
         notifications.add(notif);
     }
 
@@ -95,11 +121,17 @@ public class User {
         this.comments = comments;
     }
 
+    /**
+     * Method to get notifications.
+     *
+     * @param storageResource object to handle the back end of storing data to json file.
+     * @return
+     */
     public ArrayList<Notifications> getNotifications(StorageResource storageResource) {
 
         ArrayList<Notifications> notifsUnread = new ArrayList<>();
-        for (Notifications notifs : notifications){
-            if (!notifs.isNotifRead()){
+        for (Notifications notifs : notifications) {
+            if (!notifs.isNotifRead()) {
                 notifsUnread.add(notifs);
                 notifs.markNotifRead();
             }
@@ -109,7 +141,7 @@ public class User {
             storageResource.addUsers(this);
             return notifsUnread;
 
-        } catch (IOException ioe){
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             return null;
         }
@@ -127,7 +159,12 @@ public class User {
         isAdministrator = administrator;
     }
 
-    public String convertToJSON(){
+    /**
+     * Method to convert string to json.
+     *
+     * @return
+     */
+    public String convertToJSON() {
         Gson g = new Gson();
         return g.toJson(this);
     }

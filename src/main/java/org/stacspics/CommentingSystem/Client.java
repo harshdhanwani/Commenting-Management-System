@@ -1,18 +1,21 @@
 package org.stacspics.CommentingSystem;
 
-import org.stacspics.CommentingSystem.resources.StorageResource;
-
-import javax.ws.rs.core.Response;
 import java.io.IOException;
+import javax.ws.rs.core.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.stacspics.CommentingSystem.resources.StorageResource;
+
+/**
+ * Client class to handle the client specified code and the console based user interface.
+ */
 public class Client {
 
-    public void performTasks() throws IOException{
+    public void performTasks() throws IOException {
         Scanner scanner = new Scanner(System.in);
 
         String responseJsonData;
@@ -29,22 +32,22 @@ public class Client {
 
 //        Login - Console Interface design
         System.out.println("----------------------------------------------------------"
-        + "\n Commenting System for an Online Photo Sharing Application"
-        + "\n ---------------------------------------------------------"
-        + "\n Please Login with one of the users mentioned below :"
-        + "\n Dave"
-        + "\n John"
-        + "\n Tom "
-        + "\n Edwin (Admin) ");
+                + "\n Commenting System for an Online Photo Sharing Application"
+                + "\n ---------------------------------------------------------"
+                + "\n Please Login with one of the users mentioned below :"
+                + "\n Dave"
+                + "\n John"
+                + "\n Tom "
+                + "\n Edwin (Admin) ");
 
         boolean userSignedIn = false;
 
         Requests requests = new Requests();
 
-        while (!userSignedIn){
+        while (!userSignedIn) {
             user_name = scanner.nextLine();
 
-            if (storageResource.getUsers(user_name) != null){
+            if (storageResource.getUsers(user_name) != null) {
                 System.out.println(user_name + ", Thank you for loggin in!");
                 userSignedIn = true;
             } else {
@@ -54,9 +57,9 @@ public class Client {
 
         boolean applicationInUse = true;
 
-        while (applicationInUse){
+        while (applicationInUse) {
 
-            try{
+            try {
                 System.out.println("Please select from one of the options below "
                         + "\n Post comment on a photo "
                         + "\n Reply to a comment"
@@ -73,13 +76,13 @@ public class Client {
 
                 List<String> commandLineArguments = new ArrayList<>();
                 Matcher matcher = Pattern.compile("([^\"]\\S*|\".+?\")\\s*").matcher(scanner.nextLine());
-                while (matcher.find()){
+                while (matcher.find()) {
                     commandLineArguments.add(matcher.group(1));
                 }
 
                 String selectedChoice = commandLineArguments.get(0).toLowerCase();
 
-                switch (selectedChoice){
+                switch (selectedChoice) {
 
                     case "postcomment":
                         String commentBody = commandLineArguments.get(1);
@@ -164,7 +167,12 @@ public class Client {
                         response = requests.requestPOST(systemPath, user_name);
 
                         System.out.println("Request Response Code: " + response.getStatus());
-                        System.out.println("Comment has been deleted successfully ");
+                        if (response.getStatus() != 200) {
+                            System.out.println("Comment cant be deleted. You have no Admin permissions.");
+                        } else {
+                            System.out.println("Comment has been deleted successfully.");
+                        }
+
                         System.out.println("");
                         break;
 
@@ -200,7 +208,7 @@ public class Client {
                         break;
 
                 }
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Please enter a valid input!!");
                 System.out.println("");
             }
@@ -212,9 +220,7 @@ public class Client {
         Client c = new Client();
         try {
             c.performTasks();
-        }
-
-        catch (IOException ioe) {
+        } catch (IOException ioe) {
             System.out.println("Issue occurred. Preparing to shut down application. ");
             ioe.printStackTrace();
             System.exit(0);

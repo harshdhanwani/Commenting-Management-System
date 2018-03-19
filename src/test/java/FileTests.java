@@ -32,7 +32,7 @@ public class FileTests {
     }
 
     @Test
-    public void testAddDataToJsonFile() throws IOException, FileNotFoundException {
+    public void testAddDataToJsonFile() throws IOException {
         Gson gson = new Gson();
         storageResource.addToJson("data.json");
         StorageResource newData = gson.fromJson(new FileReader("data.json"), StorageResource.class);

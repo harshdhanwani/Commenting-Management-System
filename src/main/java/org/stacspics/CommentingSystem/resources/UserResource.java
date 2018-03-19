@@ -18,7 +18,7 @@ public class UserResource {
     @GET
     @Path("/{username}/comments")
     @Produces("text/plain")
-    public String getCommentsUserMade(@PathParam("username") String user_name){
+    public String getCommentsUserMade(@PathParam("username") String user_name) {
         User user = storageResource.getUsers(user_name);
         ArrayList<Comments> comments = user.getComments();
         return gson.toJson(comments);
@@ -27,7 +27,7 @@ public class UserResource {
     @GET
     @Path("/{username}/notifications")
     @Produces("text/plain")
-    public String getUserNotifs(@PathParam("username") String user_name){
+    public String getUserNotifs(@PathParam("username") String user_name) {
         User user = storageResource.getUsers(user_name);
         return gson.toJson(user.getNotifications(storageResource));
     }
@@ -38,13 +38,13 @@ public class UserResource {
     @Produces("text/plain")
     @Path("/{personcommenting}/comments/photos/{photoId}")
     public Response postComment(@PathParam("personcommenting") String personCommenting, @PathParam("photoId") int photoId,
-                                String commentBody){
+                                String commentBody) {
 
         User user = storageResource.getUsers(personCommenting);
         Photos photo = storageResource.getPhoto(photoId);
         int commentSize = storageResource.getUserComments().size();
 
-        if (user.addComment(commentBody, photo, storageResource)){
+        if (user.addComment(commentBody, photo, storageResource)) {
             return Response.ok().entity(Integer.toString(commentSize)).build();
         } else {
             return Response.status(Response.Status.BAD_REQUEST).build();
@@ -56,14 +56,14 @@ public class UserResource {
     @Produces("text/plain")
     @Path("/{personreplying}/comments/replies/{commentId}")
     public Response postReply(@PathParam("personreplying") String personReplying, @PathParam("commentId") int commentId,
-                              String commentBody){
+                              String commentBody) {
 
         User user = storageResource.getUsers(personReplying);
         Comments comment = storageResource.getComments(commentId);
 
         int commentSize = storageResource.getUserComments().size();
 
-        if (user.replyToComment(commentBody, comment, storageResource)){
+        if (user.replyToComment(commentBody, comment, storageResource)) {
 //            return Response.ok().entity(Integer.toString(commentSize)).build();
             return Response.ok().entity(commentSize).build();
         } else {

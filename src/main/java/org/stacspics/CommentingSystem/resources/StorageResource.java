@@ -32,20 +32,37 @@ public class StorageResource {
         userComments = new HashMap<>();
     }
 
+    /**
+     * Method to add users
+     *
+     * @param user the user to be added
+     * @throws IOException
+     */
     public void addUsers(User user) throws IOException {
         applicationUsers.put(user.getUser_name(), user);
         addToJson("data.json");
     }
 
-    public User getUsers(String user_name){
+    /**
+     * Method to get users.
+     *
+     * @param user_name the username of person
+     * @return the user
+     */
+    public User getUsers(String user_name) {
         return applicationUsers.get(user_name);
     }
 
-
-    public void addPhotos(Photos p) throws IOException{
+    /**
+     * Method to add photos
+     *
+     * @param p photo to be added
+     * @throws IOException
+     */
+    public void addPhotos(Photos p) throws IOException {
         ArrayList<Photos> photosArrayList = getPhoto(p.getPhotoUser_name());
 
-        if (photosArrayList == null){
+        if (photosArrayList == null) {
             photosArrayList = new ArrayList<>();
         }
         photosArrayList.add(p);
@@ -53,14 +70,26 @@ public class StorageResource {
         addToJson("data.json");
     }
 
-    public ArrayList<Photos> getPhoto(String user_name){
+    /**
+     * Method to get the photos
+     *
+     * @param user_name username of the person posted the photo
+     * @return
+     */
+    public ArrayList<Photos> getPhoto(String user_name) {
         return userPhotos.get(user_name);
     }
 
-    public Photos getPhoto(int photoId){
-        for (ArrayList<Photos> photosList : userPhotos.values()){
-            for (Photos p : photosList){
-                if (p.getPhotoId() == photoId){
+    /**
+     * Method to get a photo
+     *
+     * @param photoId the id of the photo
+     * @return
+     */
+    public Photos getPhoto(int photoId) {
+        for (ArrayList<Photos> photosList : userPhotos.values()) {
+            for (Photos p : photosList) {
+                if (p.getPhotoId() == photoId) {
                     return p;
                 }
             }
@@ -68,17 +97,28 @@ public class StorageResource {
         return null;
     }
 
-
-    public void addComment(Comments comments) throws IOException{
+    /**
+     * Method to add a comment
+     *
+     * @param comments the comment to be added
+     * @throws IOException
+     */
+    public void addComment(Comments comments) throws IOException {
         userComments.put(Integer.toString(comments.getCommentId()), comments);
         addToJson("data.json");
     }
 
-    public Comments getComments(int id){
+    public Comments getComments(int id) {
         return userComments.get(Integer.toString(id));
     }
 
-    public boolean hardcodeData(){
+    /**
+     * Method to populate the json data file with some dummy data
+     *
+     * @return returns true/false
+     */
+
+    public boolean hardcodeData() {
         try {
             applicationUsers = new HashMap<>();
             userPhotos = new HashMap<>();
@@ -100,12 +140,17 @@ public class StorageResource {
 
             return true;
 
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             return false;
         }
     }
 
-    public boolean hardcodeComments(){
+    /**
+     * Method to populate the json data file with dummy data and comments.
+     *
+     * @return true/false
+     */
+    public boolean hardcodeComments() {
         try {
             applicationUsers = new HashMap<>();
             userPhotos = new HashMap<>();
@@ -138,11 +183,10 @@ public class StorageResource {
 
             return true;
 
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             return false;
         }
     }
-
 
 
     public HashMap<String, Comments> getUserComments() {
@@ -161,6 +205,12 @@ public class StorageResource {
         return objectIDs;
     }
 
+    /**
+     * Method to write a file.
+     *
+     * @param file
+     * @throws IOException
+     */
     public void addToJson(String file) throws IOException {
         File f = new File(file);
         FileWriter fileWriter = new FileWriter(f);
@@ -168,21 +218,29 @@ public class StorageResource {
         fileWriter.close();
     }
 
-    public StorageResource readFromJson(String file){
-        try{
+    /**
+     * Method to read from the json file.
+     *
+     * @param file
+     * @return
+     */
+    public StorageResource readFromJson(String file) {
+        try {
             File f = new File(file);
             FileReader fileWriter = new FileReader(f);
             Gson gson = new Gson();
             String jsonData = new String(Files.readAllBytes(Paths.get(file)));
             StorageResource storageResource = gson.fromJson(jsonData, StorageResource.class);
+            fileWriter.close();
             return storageResource;
-        } catch (IOException ioe){
+
+        } catch (IOException ioe) {
             ioe.printStackTrace();
             return null;
         }
     }
 
-    public String convertToJSON(){
+    public String convertToJSON() {
         Gson g = new Gson();
         return g.toJson(this);
     }

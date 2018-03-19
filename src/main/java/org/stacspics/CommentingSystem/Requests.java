@@ -14,24 +14,30 @@ import java.net.URLConnection;
 
 public class Requests {
 
-    String httpResponse= "";
-    String serverResponse ="";
-    
+    String httpResponse = "";
+    String serverResponse = "";
 
-    public String requestGET(String systemPath) throws IOException{
+    /**
+     * Method handling the GET requests
+     *
+     * @param systemPath resource path
+     * @return
+     * @throws IOException
+     */
+    public String requestGET(String systemPath) throws IOException {
 
         URL url = new URL("http", "localhost", 8080, "/myapp" + systemPath);
         final String urlProtocol = url.getProtocol();
-        if (urlProtocol.equalsIgnoreCase("http")){
+        if (urlProtocol.equalsIgnoreCase("http")) {
             final URLConnection urlConnection = url.openConnection();
-            if (urlConnection instanceof HttpURLConnection){
+            if (urlConnection instanceof HttpURLConnection) {
                 final HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
                 httpURLConnection.connect();
 
                 BufferedReader bufferedReader = new BufferedReader(new
                         InputStreamReader(httpURLConnection.getInputStream()));
 
-                while ((httpResponse = bufferedReader.readLine()) != null){
+                while ((httpResponse = bufferedReader.readLine()) != null) {
                     serverResponse = httpResponse;
                 }
 
@@ -46,18 +52,24 @@ public class Requests {
         }
     }
 
+    /**
+     * Method handling POST requests.
+     *
+     * @param systemPath resource path
+     * @param message
+     * @return
+     */
+    public Response requestPOST(String systemPath, String message) {
 
-    public Response requestPOST(String systemPath, String message){
-
-        try{
+        try {
             Client c = ClientBuilder.newClient();
             WebTarget wt = c.target("http://localhost:8080/myapp" + systemPath);
 
-           Response requestResponse = wt.request("text/plain")
-                   .post(Entity.entity(message, "text/plain"));
+            Response requestResponse = wt.request("text/plain")
+                    .post(Entity.entity(message, "text/plain"));
 
-           return requestResponse;
-        } catch (Exception e){
+            return requestResponse;
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

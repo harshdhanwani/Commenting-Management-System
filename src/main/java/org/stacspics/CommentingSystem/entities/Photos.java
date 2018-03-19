@@ -6,6 +6,9 @@ import org.stacspics.CommentingSystem.entities.ObjectIDs;
 
 import java.util.ArrayList;
 
+/**
+ * Class containing getters and setters for Photo components.
+ */
 public class Photos {
 
     // username of the person who posted a photo
@@ -24,7 +27,7 @@ public class Photos {
         return photoUser_name;
     }
 
-    public void addComment(Comments comment){
+    public void addComment(Comments comment) {
         comments.add(comment);
     }
 
@@ -48,7 +51,7 @@ public class Photos {
         this.photoId = photoId;
     }
 
-    public String convertToJSON(){
+    public String convertToJSON() {
         Gson g = new Gson();
         return g.toJson(this);
     }

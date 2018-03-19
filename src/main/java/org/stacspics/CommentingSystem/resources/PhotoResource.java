@@ -20,7 +20,7 @@ public class PhotoResource {
     @GET
     @Path("{photoId}/comments")
     @Produces("text/plain")
-    public String getCommentsFromPhoto(@PathParam("photoId") int photoId){
+    public String getCommentsFromPhoto(@PathParam("photoId") int photoId) {
 
         Photos photo = storageResource.getPhoto(photoId);
         ArrayList<Comments> comments = photo.getComments();

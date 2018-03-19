@@ -3,6 +3,9 @@ package org.stacspics.CommentingSystem.entities;
 import com.google.gson.Gson;
 import org.stacspics.CommentingSystem.entities.Comments;
 
+/**
+ * Class to handle the getters and setters for Notifications.
+ */
 public class Notifications {
 
     private String notifBody;
@@ -27,7 +30,7 @@ public class Notifications {
         return notifRead;
     }
 
-    public void markNotifRead(){
+    public void markNotifRead() {
         notifRead = true;
     }
 
@@ -39,7 +42,7 @@ public class Notifications {
         this.notifComments = notifComments;
     }
 
-    public String convertToJSON(){
+    public String convertToJSON() {
         Gson g = new Gson();
         return g.toJson(this);
     }
