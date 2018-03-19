@@ -37,7 +37,7 @@ public class PhotoResourcesTest {
 
 
     @Test
-    public void testGetPhotoComments() throws IOException {
+    public void testGetCommentsPhoto() throws IOException {
         String responseString = requests.requestGET("/photos/0/comments");
         Photos p = storageResource.getPhoto(0);
         ArrayList<Comments> commentsArrayList = p.getComments();
