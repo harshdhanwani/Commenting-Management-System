@@ -61,7 +61,7 @@ public class Comments {
 
     public boolean deleteComment(User user, StorageResource sr){
         if (user.isAdministrator()){
-            commentBody = " Comment no longer available. Deleted by Admin.";
+            commentBody = "Comment no longer available. Deleted by Admin.";
             try {
                 sr.addComment(this);
                 sr.addUsers(user);

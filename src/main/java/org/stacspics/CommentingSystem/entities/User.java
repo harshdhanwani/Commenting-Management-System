@@ -1,5 +1,6 @@
 package org.stacspics.CommentingSystem.entities;
 
+import com.google.gson.Gson;
 import org.stacspics.CommentingSystem.resources.StorageResource;
 
 import java.io.IOException;
@@ -124,6 +125,11 @@ public class User {
 
     public void setAdministrator(boolean administrator) {
         isAdministrator = administrator;
+    }
+
+    public String convertToJSON(){
+        Gson g = new Gson();
+        return g.toJson(this);
     }
 
 }
