@@ -22,7 +22,7 @@ public class Requests {
 
         URL url = new URL("http", "localhost", 8080, "/myapp" + systemPath);
         final String urlProtocol = url.getProtocol();
-        if (urlProtocol.equalsIgnoreCase("https")){
+        if (urlProtocol.equalsIgnoreCase("http")){
             final URLConnection urlConnection = url.openConnection();
             if (urlConnection instanceof HttpURLConnection){
                 final HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;

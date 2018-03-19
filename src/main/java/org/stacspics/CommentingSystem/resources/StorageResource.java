@@ -7,6 +7,7 @@ import org.stacspics.CommentingSystem.entities.Photos;
 import org.stacspics.CommentingSystem.entities.User;
 
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -19,17 +20,16 @@ import java.util.HashMap;
  */
 public class StorageResource {
 
-    HashMap<String, Comments> userComments;
     private HashMap<String, User> applicationUsers;
     HashMap<String, ArrayList<Photos>> userPhotos;
     ObjectIDs objectIDs;
-
+    HashMap<String, Comments> userComments;
 
     public StorageResource() {
-        userComments = new HashMap<>();
         applicationUsers = new HashMap<>();
-        objectIDs = new ObjectIDs();
         userPhotos = new HashMap<>();
+        objectIDs = new ObjectIDs();
+        userComments = new HashMap<>();
     }
 
     public void addUsers(User user) throws IOException {
@@ -125,7 +125,7 @@ public class StorageResource {
             addPhotos(p1);
             addPhotos(p2);
 
-            dave.addComment("Hey Dave, you're looking great!!", p1, this);
+            dave.addComment("Hey, you're looking great!!", p1, this);
             Comments comment = dave.getComments().get(0);
             comment.upVoteComment(this);
             comment.upVoteComment(this);
@@ -171,7 +171,7 @@ public class StorageResource {
     public StorageResource readFromJson(String file){
         try{
             File f = new File(file);
-            FileWriter fileWriter = new FileWriter(f);
+            FileReader fileWriter = new FileReader(f);
             Gson gson = new Gson();
             String jsonData = new String(Files.readAllBytes(Paths.get(file)));
             StorageResource storageResource = gson.fromJson(jsonData, StorageResource.class);

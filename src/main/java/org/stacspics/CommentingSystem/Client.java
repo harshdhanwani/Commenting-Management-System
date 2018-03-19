@@ -13,21 +13,21 @@ import java.util.regex.Pattern;
 public class Client {
 
     public void performTasks() throws IOException{
+        Scanner scanner = new Scanner(System.in);
 
         String responseJsonData;
+        Response response = null;
         String systemPath = "";
         String user_name = "";
-        Response response = null;
 
-        Scanner scanner = new Scanner(System.in);
+
+
         StorageResource storageResource = new StorageResource();
 
         storageResource.hardcodeComments();
         storageResource.addToJson("data.json");
         storageResource = storageResource.readFromJson("data.json");
 
-        boolean userSignedIn = false;
-        boolean applicationInUse = true;
 
 //        Login - Console Interface design
         System.out.println("----------------------------------------------------------"
@@ -38,6 +38,9 @@ public class Client {
         + "\n John"
         + "\n Tom "
         + "\n Edwin (Admin) ");
+
+        boolean userSignedIn = false;
+
 
         Requests requests = new Requests();
 
@@ -51,6 +54,8 @@ public class Client {
                 System.out.println("Invalid user, Please try again. ");
             }
         }
+
+        boolean applicationInUse = true;
 
         while (applicationInUse){
 
