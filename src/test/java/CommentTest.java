@@ -68,12 +68,12 @@ public class CommentTest {
                 false, storageResource.getObjectIDs());
 
         String json = testComment.convertToJSON();
-        Comments commentParsed = gson.fromJson(json, Comments.class);
+        Comments convertedComment = gson.fromJson(json, Comments.class);
 
-        assertEquals(commentParsed.getCommentReplies(), testComment.getCommentReplies());
-        assertEquals(commentParsed.getUser_name(), testComment.getUser_name());
-        assertEquals(commentParsed.getCommentBody(), testComment.getCommentBody());
-        assertEquals(commentParsed.getUpVotesCount(), testComment.getUpVotesCount());
+        assertEquals(convertedComment.getCommentReplies(), testComment.getCommentReplies());
+        assertEquals(convertedComment.getUser_name(), testComment.getUser_name());
+        assertEquals(convertedComment.getCommentBody(), testComment.getCommentBody());
+        assertEquals(convertedComment.getUpVotesCount(), testComment.getUpVotesCount());
 
 
 
