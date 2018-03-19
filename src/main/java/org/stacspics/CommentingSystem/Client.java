@@ -20,8 +20,6 @@ public class Client {
         String systemPath = "";
         String user_name = "";
 
-
-
         StorageResource storageResource = new StorageResource();
 
         storageResource.hardcodeComments();
@@ -40,7 +38,6 @@ public class Client {
         + "\n Edwin (Admin) ");
 
         boolean userSignedIn = false;
-
 
         Requests requests = new Requests();
 
@@ -207,8 +204,6 @@ public class Client {
                 System.out.println("Please enter a valid input!!");
                 System.out.println("");
             }
-
-
         }
     }
 
@@ -225,8 +220,5 @@ public class Client {
             System.exit(0);
         }
     }
-
-
-
 
 }
