@@ -64,6 +64,7 @@ public class Comments {
             commentBody = " Comment no longer available. Deleted by Admin.";
             try {
                 sr.addComment(this);
+                sr.addUsers(user);
                 return true;
             } catch (IOException ioe){
                 return false;
